@@ -22,4 +22,12 @@ aaa b cccc CC a B
 Строка, содержащая закодированную последовательность.
 """
 
-
+char = input('Введите произвольную строку состоящую из латинских символов: ')
+print(char)
+result = []
+for element in char:
+    if element.isdigit() or element.isspace():
+        continue
+    if element.
+        result.append(element)
+print(result)
