@@ -23,11 +23,16 @@ aaa b cccc CC a B
 """
 
 char = input('Введите произвольную строку состоящую из латинских символов: ')
-print(char)
+print('Before: ', char)
 result = []
 for element in char:
     if element.isdigit() or element.isspace():
+        print('Первое условие исключения: Тут цифры или пробелы')
         continue
-    if element.
+    if element.find(element, -1, 0) == 1:
+        print('Второе условие исключения: кол-во символов не больше одного')
         result.append(element)
-print(result)
+    else:
+        print('Дошел до условия else')
+        result.append(str(element.count(element)) + element)
+print('After: ' + ''.join(result))
