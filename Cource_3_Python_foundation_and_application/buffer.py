@@ -13,10 +13,32 @@
 class Buffer:
     def __init__(self):
         """конструктор без аргументов"""
+        self.current_part = []
+        self.sum_chunks = []
+        self.max_part = 5
 
     def add(self, *a):
         """добавить следующую часть последовательности"""
-        sequence = []
-        
+        self.current_part.extend(a)
+
+        while len(self.current_part) >= self.max_part:
+            self.sum_chunks.append(sum(self.current_part[:self.max_part]))
+            self.current_part = self.current_part[self.max_part::]
+
+            for index, num in enumerate(self.sum_chunks):
+                print(self.sum_chunks.pop(index))
+
     def get_current_part(self):
         """вернуть сохраненные в текущий момент элементы последовательности в порядке, в котором они были добавлены"""
+        return self.current_part
+
+
+buf = Buffer()
+buf.add(1, 2, 3)
+buf.get_current_part()  # вернуть [1, 2, 3]
+buf.add(4, 5, 6)  # print(15) – вывод суммы первой пятерки элементов
+buf.get_current_part()  # вернуть [6]
+buf.add(7, 8, 9, 10)  # print(40) – вывод суммы второй пятерки элементов
+buf.get_current_part()  # вернуть []
+buf.add(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)  # print(5), print(5) – вывод сумм третьей и четвертой пятерки
+buf.get_current_part()  # вернуть [1]
